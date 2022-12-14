@@ -13,7 +13,11 @@ function App() {
     // data initialy is []
     if (loading) return;
     setFollowers(data[page]);
-  }, [loading]);
+  }, [loading, page, data]);
+
+  const handlePage = (index) => {
+    setPage(index);
+  };
 
   return (
     <main>
@@ -26,9 +30,26 @@ function App() {
             return <Follower key={follower.id} {...follower} />;
           })}
         </div>
+        {!loading && (
+          <div className="btn-container">
+            {data.map((_, index) => {
+              return (
+                <button
+                  key={index}
+                  className={`page-btn ${index === page ? "active-btn" : ""}`}
+                  onClick={() => handlePage(index)}
+                >
+                  {index + 1}
+                </button>
+              );
+            })}
+          </div>
+        )}
       </section>
     </main>
   );
 }
-
+// 4) display button
+// 1. conditional render -> after loading is done, show buttons
+// 2. function to control which page show up
 export default App;
