@@ -3,7 +3,6 @@ import { useFetch } from "./useFetch";
 import Follower from "./Follower";
 function App() {
   const { loading, data } = useFetch();
-  console.log(loading, data);
   return (
     <main>
       <div className="section-title">
