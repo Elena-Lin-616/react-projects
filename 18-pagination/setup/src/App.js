@@ -18,6 +18,18 @@ function App() {
   const handlePage = (index) => {
     setPage(index);
   };
+  const prevPage = () => {
+    setPage((prev) => {
+      if (prev === 0) return data.length - 1;
+      return prev - 1;
+    });
+  };
+  const nextPage = () => {
+    setPage((prev) => {
+      if (prev === data.length - 1) return 0;
+      return prev + 1;
+    });
+  };
 
   return (
     <main>
@@ -32,6 +44,9 @@ function App() {
         </div>
         {!loading && (
           <div className="btn-container">
+            <button className="prev-btn" onClick={prevPage}>
+              prev
+            </button>
             {data.map((_, index) => {
               return (
                 <button
@@ -43,6 +58,9 @@ function App() {
                 </button>
               );
             })}
+            <button className="prev-btn" onClick={nextPage}>
+              prev
+            </button>
           </div>
         )}
       </section>
